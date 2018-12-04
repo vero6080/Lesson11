@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class countPairs {
 
-    ArrayList<Integer> testdata;
+    ArrayList<String> testdata;
     ArrayList<Integer> expected;
     String id;
 
-    countPairs(ArrayList<Integer> al, ArrayList<Integer> ex, String name) {
+    countPairs(ArrayList<String> al, ArrayList<Integer> ex, String name) {
         testdata = al;
         expected = ex;
         id = name;
@@ -34,15 +34,38 @@ public class countPairs {
         for (int i = 0; i < testdata.size(); i++) {
             String output = id + "(" + testdata.get(i) + ")->" + expected.get(i);
             System.out.print(String.format("%-25s", output));
-            //int result = countPairs(testdata,0);
-            //String status = result == expected.get(i) ? "OK" : "FAIL";
-            //System.out.println(result + "\t" + status);
+            int result = countPairs(testdata.get(i));
+            String status = result == expected.get(i) ? "OK" : "FAIL";
+            System.out.println(result + "\t" + status);
         }
     }
 
     public static void main(String[] args) {
-        ArrayList<Integer> in = new ArrayList();
+        ArrayList<String> in = new ArrayList();
         ArrayList<Integer> out = new ArrayList();
+        
+        in.add("axa");
+        in.add("axax");
+        in.add("axbx");
+        in.add("hi");
+        in.add("hihih");
+        in.add("ihihhh");
+        in.add("ihjxhh");
+        in.add("a");
+        in.add("aa");
+        in.add("aaa");
+        
+        out.add(1);
+        out.add(2);
+        out.add(1);
+        out.add(0);
+        out.add(3);
+        out.add(3);
+        out.add(0);
+        out.add(0);
+        out.add(0);
+        out.add(0);
+        out.add(1);
 
         countPairs prob = new countPairs(in, out, "array11");
         prob.test();
