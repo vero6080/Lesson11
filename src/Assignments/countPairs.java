@@ -15,17 +15,14 @@ public class countPairs {
     }
 
     public int countPairs(String str) {
-        //needs to be fixed
-        int count = 0, index = 0;
-        if (str.length() <= 1) {
-            return count;
+        if (str.length() < 3) {
+            return 0;
         }
-        if (str.charAt(index) == str.charAt(index + 2)) {
-            count++;
-        } else {
-            countPairs(str);
+        int count = 0;
+        if (str.charAt(0) == str.charAt(2)) {
+            count = 1;
         }
-        return count;
+        return count + countPairs(str.substring(1));
     }
 
     public void test() {
@@ -43,7 +40,7 @@ public class countPairs {
     public static void main(String[] args) {
         ArrayList<String> in = new ArrayList();
         ArrayList<Integer> out = new ArrayList();
-        
+
         in.add("axa");
         in.add("axax");
         in.add("axbx");
@@ -54,14 +51,13 @@ public class countPairs {
         in.add("a");
         in.add("aa");
         in.add("aaa");
-        
+
         out.add(1);
         out.add(2);
         out.add(1);
         out.add(0);
         out.add(3);
         out.add(3);
-        out.add(0);
         out.add(0);
         out.add(0);
         out.add(0);
