@@ -1,69 +1,55 @@
 package Assignments;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class array11 {
 
-    ArrayList<Integer> testdata;
+    ArrayList<int[]> testdata;
     ArrayList<Integer> expected;
     String id;
 
-    array11(ArrayList<Integer> al, ArrayList<Integer> ex, String name) {
+    array11(ArrayList<int[]> al, ArrayList<Integer> ex, String name) {
         testdata = al;
         expected = ex;
         id = name;
     }
-
-    public int array11(ArrayList<Integer> nums, int index) {
-        //problem with ArrayList
-        int count = 0;
-        if (index == nums.size()) {
-            return count;
-        }
-        if (nums.get(index) == 11) {
-            count = 1;
-        }
-        return count + array11(nums, index + 1);
-    }
-
-    /*
-    Original (still broken) version
+     
     public int array11(int[] nums, int index) {
         int count = 0;
-        if (index == nums.length){
+        if (index == nums.length) {
             return count;
         }
         if (nums[index] == 11) {
             count = 1;
         }
         return count + array11(nums, index + 1);
-}
-     */
+    }
+    
+
     public void test() {
-        System.out.println("Expected\t\tRun\tResult");
-        System.out.println("====================================");
+        System.out.println("Expected\t\t\t\tRun\tResult");
+        System.out.println("======================================================");
         for (int i = 0; i < testdata.size(); i++) {
-            String output = id + "(" + testdata.get(i) + ")->" + expected.get(i);
+            String output = id + "(" + Arrays.toString(testdata.get(i)) + ")->" + expected.get(i);
             System.out.print(String.format("%-25s", output));
-            int result = array11(testdata, 0);
+            int result = array11(testdata.get(i), 0);
             String status = result == expected.get(i) ? "OK" : "FAIL";
-            System.out.println(result + "\t" + status);
+            if (i==7)
+                System.out.println("\t" + result + "\t" + status);
+            else
+                System.out.println("\t\t" + result + "\t" + status);
         }
     }
 
     public static void main(String[] args) {
-        ArrayList<Integer> in = new ArrayList();
+        ArrayList<int[]> in = new ArrayList();
         ArrayList<Integer> out = new ArrayList();
 
-        in.add(1);
-        in.add(2);
-        in.add(0);
-        in.add(3);
-        in.add(1);
-        in.add(0);
-        in.add(0);
-        in.add(2);
-        in.add(2);
+        int x[][] = {{1,2,11},{11,11},{1,2,3,4},{1,11,3,11,11},
+            {11},{1},{},{11,2,3,4,11,5},{11,5,11}};
+        for (int nums[]:x)
+            in.add(nums);
 
         out.add(1);
         out.add(2);
