@@ -15,34 +15,37 @@ public class array11 {
     }
 
     public int array11(ArrayList<Integer> nums, int index) {
-        //need to fix
+        //problem with ArrayList
         int count = 0;
-        if (index == nums.size()) return count;
-         if (nums.get(index)==11) count++;
-         else
-            array11(nums, index+1);
-        return count;
+        if (index == nums.size()) {
+            return count;
+        }
+        if (nums.get(index) == 11) {
+            count = 1;
+        }
+        return count + array11(nums, index + 1);
     }
-    
+
     /*
     Original (still broken) version
     public int array11(int[] nums, int index) {
         int count = 0;
-        if (index == nums.length) return count;
-         if (nums[index]==11) count++;
-         else
-            array11(nums, index+1);
-        return count;
+        if (index == nums.length){
+            return count;
+        }
+        if (nums[index] == 11) {
+            count = 1;
+        }
+        return count + array11(nums, index + 1);
 }
-    */
-
+     */
     public void test() {
         System.out.println("Expected\t\tRun\tResult");
         System.out.println("====================================");
         for (int i = 0; i < testdata.size(); i++) {
             String output = id + "(" + testdata.get(i) + ")->" + expected.get(i);
             System.out.print(String.format("%-25s", output));
-            int result = array11(testdata,0);
+            int result = array11(testdata, 0);
             String status = result == expected.get(i) ? "OK" : "FAIL";
             System.out.println(result + "\t" + status);
         }
@@ -71,7 +74,7 @@ public class array11 {
         out.add(0);
         out.add(2);
         out.add(2);
-        
+
         array11 prob = new array11(in, out, "array11");
         prob.test();
     }
